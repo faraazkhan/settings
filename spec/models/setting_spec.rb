@@ -22,13 +22,13 @@ describe Setting do
   end
 
   context 'must validate clickthrough_rate is a float' do
-    it 'and throw error message' do
+    it 'should throw error when it is not' do
       setting = Setting.new(:configuration_settings => {:clickthrough_rate => 1})
       setting.send :is_clickthrough_rate_float? #force validation to run
       setting.errors[:clickthrough_rate].should be_present
     end
 
-    it 'and throw error message' do
+    it 'should not throw an error when it is' do
       setting = Setting.new(:configuration_settings => {:clickthrough_rate => 1.0})
       setting.send :is_clickthrough_rate_float? #force validation to run
       setting.errors[:clickthrough_rate].should_not be_present
